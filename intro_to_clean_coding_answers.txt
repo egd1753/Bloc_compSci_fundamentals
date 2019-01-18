@@ -1,0 +1,55 @@
+# Exercises
+
+> In your own words, explain what clean code is and why it is important.
+
+A: I think clean code is analogous to grammatically correct English (or French, Spanish, etc.). If I were to use misplaced modifiers, bad spelling, run-on sentences, etc., the reader or listener might understand what I'm saying (IN SPITE of what I'm saying :)   ), or they might not. In every day converstations this confusion might not be a big deal, but in a professional environment, bad grammar can make you appear less intelligent, capable, etc. In a more serious environment, say, in a hospital, incorrect grammar could cause ambiguity and confusion that could endanger a patient's life. Since computers and their codes are now responsible for handling all kinds of important tasks (ex: handling traffic lights), it's vitally important that code is written clean.
+
+> ...think about another commonly used object that relies on computers and explain what would happen if the code was not created to an acceptable standard.
+
+A: As the article mentioned, the medical industry is a safety-critical field. Though I am not well versed in medical equipment, I'm fairly certain that an EKG monitor is common in hospitals, and undoubtedly the lives of patients would be at risk if the EKG's were poorly programmed.  
+
+> 3. Would you consider the following to be clean code? Explain why or why not. If not, refactor the code.
+
+A: I wouldn't consider this code to be clean, because I had no clue what `x`, `y`, `z`, etc. represented or what this function does, until I got to the third line that mentions temperature properties. The lines of comments are unnecessary. Instead of using conditionals, we can extract methods. I would refactor it to something like: 
+
+```
+FUNCTION convertToCelsius(fahrenheit)
+	temperatureCelsius = (fahrenheit - 32) * (5 / 9)
+	RETURN temperatureCelsius
+END FUNCTION
+
+FUNCTION convertToFahrenheit(celsius)
+	fahrenheit = celsius * (9 / 5) + 32
+	RETURN fahrenheit
+END FUNCTION
+
+FUNCTION checkTemperatureUnit(fahrenheit, celsius)
+	IF fahrenheit THEN
+		CALL convertToCelsius
+	ELSE IF celsius THEN
+		CALL convertToFahrenheit
+	ELSE
+		PRINT "Invalid entry, temperature must be in celsius or fahrenheit"
+	ENDIF
+END FUNCTION
+```
+
+> 4. Would you consider the following to be clean code? Explain why or why not. If not, refactor the code.
+
+A: It's not clean, because: the function name is using an abbreviation, 
+
+```
+FUNCTION calculatePercent(sum, total)
+	IF total equals 0 THEN
+		RETURN "Sorry, cannot divide by 0"
+	ELSE 
+		SET percentage to ( (sum / total) * 100 )
+	END IF
+	
+	PRINT percentage
+END FUNCTION
+```
+		
+	
+		
+
