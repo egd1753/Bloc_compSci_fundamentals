@@ -59,7 +59,7 @@ A:
 ```
 function queryPhonebook(phonebookArr, query) {
 	for(let i = 0; i < phonebookArr.length; i++) {
-		if(phonebookArr[i] == query) {
+		if(phonebookArr[i] === query) {
 			return phonebookArr[i];
         } else return "Unable to find query";
     }
