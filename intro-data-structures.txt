@@ -1,0 +1,51 @@
+# Exercises
+
+> 1. A line of people at an amusement park ride.....
+
+A:
+```pseudocode
+(a)
+INIT Members as an array 
+SET Members to: "Vivian", "Ava", "Josh", "Patrick", and "Mike"
+
+(b)	
+INIT NewMember 
+SET NewMember to "Mary" 
+ADD NewMember to Members at the (last index + 1)
+
+(c)
+FUNCTION findMember(query) 
+	SEARCH Members for the index of query
+	RETURN index of query
+END FUNCTION
+
+CALL findMember("Josh")
+
+(d)
+FUNCTION findMember(query)
+	SEARCH Members for index of query
+	IF Members contains the query THEN
+		RETURN index of query
+	ELSE 
+		RETURN "Could not find your query"
+END FUNCTION
+
+CALL findMember("Emily")
+
+(e)
+SET NewMember to "Melissa"
+ADD NewMember to Members at index of 1 without deleting any members
+
+(f)
+DELETE Member from Members at index of 3
+
+```
+
+> Provide another real-world example that you can model using a data structure.
+
+A: Organized books in a library can be modeled using a data structure.
+
+> How would your data structure allow developers to access and manipulate the data?
+
+A: Most libraries use the Dewey Decimal System, which introduced the concepts of relative location and relative index. Books are assigned numerical values based on their topics (classes), and books can be further subdivided by adding fractional decimals to the topic/class number. A developer could assign values to new books, allowing other developers to know the location of these books relative to the books around them.   
+
