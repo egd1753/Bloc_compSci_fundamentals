@@ -1,0 +1,228 @@
+# Exercises
+
+> 1. What is a hash table?
+
+A. A hash table (or hash data structure) is a kind of data structure that allows us to impliment a map. Hash tables are basically made of two parts: a hash function and an array. Hash tables are similar to JavaScript objects in that it stores a value by linking that value to a key, and each key should be unique so that a value can be retrieved by looking for its distinct key. Most languages have hash tables built in, and in fact, a JavaScript object is similar to a hash table, because behind the scenes it is actually built using a hash table!  
+
+> 2. What is hashing?
+
+A: Hashing is the process of converting a string (the typical data type of a key) into a numerical index. We do this because a hash table ultimately stores its key/value pairs in certain locations in an array, an arrays can only be indexed by numbers. 
+
+> 3. How does a hash table store data?
+
+A: A hash table stores data by taking a key input and running it through a hash function. This function usually maps strings to numbers, with the numbers corresponding to indexes in an array. 
+
+> 4. How are hash tables and objects different?
+
+A: Hash tables vs. objects isn't comparing apples to oranges, but rather is more like comparing apples to Fiji apples: one is a subset of the other. Advantages of hash tables are that it can handle cases where a key corresponds to a native object attribute, and it provides a constant time for lookup. However, in JavaScript we can use bare objects (ES5: we use the create method on the Object prototype to instantiate a new object with the delegation chain specified). These bare objects offer similar benefits of a hash table, but without the headache of creating/implimenting a hash table. 
+
+> 5. Determine whether you would use a hash table or an object to store each of the following pieces of data:...
+
+A: "A list of pets and their unique names.": hash table, 
+"The name, age, and the birthday of your best friend.": object,
+"The name and location of every company in a given city.": hash table,
+"All of the books checked out from a library by a particular individual.": hash table,
+"The primary and secondary phone numbers for a contact.": object
+
+> 6. Build a system that allows a sales associate to enter a customer's name, address, and phone number into the system and look up customers using their phone numbers. Store this information in a hash table.
+
+A: 
+
+```javascript
+
+var hashFunction = (phoneNumKey, maxSize) => {
+	var hashCode = 0;
+	for (let i = 0; i < phoneNumKey.length; i++) {
+		hashCode += phoneNumKey.charCodeAt(i);
+	}
+	return hashCode % maxSize;
+}
+
+let customerDataHashTable = function() {
+	let storageArray = [];
+	const storageLimit = 10;
+
+	this.print = function() {
+		console.log(storage);
+	}
+
+	this.inputNewCustomer = function(key, value) {
+		var indexNum = hashFunction(key, storageLimit);
+		if (storageArray[indexNum] === undefined) {
+			storageArray[indexNum] = [ 
+				[key, value] 
+			];
+		} else {
+			var inserted = false;
+			for (let i = 0; i < storageArray[indexNum].length; i++) {
+				if (storageArray[indexNum][i][0] === key) {
+					storageArray[indexNum][i][1] = value;
+					inserted = true;
+				}
+			}
+			if (inserted === false) {
+				storageArray[indexNum].push([key, value]);
+			}
+		}
+	};
+
+	this.searchByPhone = function(phoneNumKey) {
+		var indexNum = hashFunction(phoneNumKey, storageLimit);
+		if (storageArray[indexNum] === undefined) {
+			return "We didn't find the droid that you're looking for";
+		} else {
+			for (let i = 0; i < storageArray[indexNum].length; i++) {
+				if (storageArray[indexNum][i][0] === phoneNumKey) {
+					return storageArray[indexNum][i][1];
+				}
+			}
+		}
+	};
+};
+   
+
+
+
+
+
+```
+
+> 7. Build a system that allows a store owner to track their store's inventory using a hash table for storage.
+
+A: 
+```javascript
+class InventoryHashTable {
+	constructor() {
+		this.storageArray = [];
+        this.storageLimit = 10;
+    }
+
+
+	hashFunction(key, storageLimit) {
+	var hashCode = 0;
+	for (let i = 0; i < key.length; i++) {
+		hashCode += key.charCodeAt(i);
+	}
+	return hashCode % storageLimit;
+	}
+
+			
+	inputNewProduct(skuKey, productInfo) {
+        var indexNumber = this.hashFunction(skuKey, this.storageLimit);
+
+        if (this.storageArray[indexNumber] === undefined) {
+            this.storageArray[indexNumber] = [[skuKey, productInfo]];
+        } else {
+            var inserted = false;
+            for (let i = 0; i < this.storageArray[indexNumber].length; i++) {
+                if (this.storageArray[indexNumber][i][0] === skuKey) {
+					this.storageArray[indexNumber][i][1] = productInfo;
+					inserted = true;
+                }
+            }
+            if (inserted === false) {
+				this.storageArray[indexNumber].push([skuKey, productInfo]);
+			}
+        }
+	}
+
+
+    removeProduct(skuKey) {
+        var indexNumber = this.hashFunction(skuKey, this.storageLimit);
+        if (this.storageArray[indexNumber].length === 1 && this.storageArray[indexNumber][0][0] === skuKey) {
+            delete this.storageArray[indexNumber];
+        } else {
+            for (let i = 0; i < this.storageArray[indexNumber].length; i++) {
+                if (this.storageArray[indexNumber][i][0] === skuKey) {
+                    delete this.storageArray[indexNumber][i];
+                }
+            }
+        }
+    }
+
+
+    searchBySku(skuKey) {
+		var indexNumber = this.hashFunction(skuKey, this.storageLimit);
+		if (this.storageArray[indexNumber] === undefined) {
+			return "No product found";
+		} else {
+			for (let i = 0; i < this.storageArray[indexNumber].length; i++) {
+				if (this.storageArray[indexNumber][i][0] === skuKey) {
+					return this.storageArray[indexNumber][i][1];
+				}
+			}
+		}
+	};
+
+};
+```
+
+> 8. Build a system that allows digital copies of newspapers to be entered and searched by publisher and publication date. Use hash tables to store the necessary data.
+
+A: 
+```javascript
+class newspaperHashTable {
+	constructor() {
+		this.storageArray = [];
+        this.storageLimit = 20;
+    }
+
+
+	hashFunction(key, storageLimit) {
+	let hashCode = 0;
+	for (let i = 0; i < key.length; i++) {
+		hashCode += key.charCodeAt(i);
+	}
+	return hashCode % storageLimit;
+	}
+
+			
+	inputNewspapers(key, newspaper) {
+        let indexNumber = this.hashFunction(key, this.storageLimit);
+
+        if (this.storageArray[indexNumber] === undefined) {
+            this.storageArray[indexNumber] = [[key, newspaper]];
+        } else {
+            var inserted = false;
+            for (let i = 0; i < this.storageArray[indexNumber].length; i++) {
+                if (this.storageArray[indexNumber][i][0] === key) {
+					this.storageArray[indexNumber][i][1] = newspaper;
+					inserted = true;
+                }
+            }
+            if (inserted === false) {
+				this.storageArray[indexNumber].push([key, newspaper]);
+			}
+        }
+	}
+
+
+    removeNewspaper(key) {
+        var indexNumber = this.hashFunction(key, this.storageLimit);
+        if (this.storageArray[indexNumber].length === 1 && this.storageArray[indexNumber][0][0] === key) {
+            delete this.storageArray[indexNumber];
+        } else {
+            for (let i = 0; i < this.storageArray[indexNumber].length; i++) {
+                if (this.storageArray[indexNumber][i][0] === key) {
+                    delete this.storageArray[indexNumber][i];
+                }
+            }
+        }
+    }
+
+
+    search(key) {
+		var indexNumber = this.hashFunction(key, this.storageLimit);
+		if (this.storageArray[indexNumber] === undefined) {
+			return "No results found";
+		} else {
+			for (let i = 0; i < this.storageArray[indexNumber].length; i++) {
+				if (this.storageArray[indexNumber][i][0] === key) {
+					return this.storageArray[indexNumber][i][1];
+				}
+			}
+		}
+	};
+
+};
+```

@@ -44,12 +44,15 @@ A:
 ```
 INPUT phonebook array
 INPUT query
+SET results to an empty array
 FOR each entry in the phonebook array
 	IF phonebook entry matches query
-		RETURN phonebook entry
-	ELSE 
-		RETURN "Unable to find query"
+		PUSH phonebook entry to results
 END FOR
+IF the length of results is greater than 0
+	RETURN results
+ELSE 
+	RETURN "Unable to find query"
 ```
 
 > 4. Using the pseudocode you wrote for the previous question, implement it in any computer language of your choice.
@@ -58,10 +61,26 @@ A:
 
 ```
 function queryPhonebook(phonebookArr, query) {
-	for(let i = 0; i < phonebookArr.length; i++) {
-		if(phonebookArr[i] === query) {
-			return phonebookArr[i];
-        } else return "Unable to find query";
-    }
+	
+   let results = [];
+	
+   for(let i = 0; i < phonebookArr.length; i++) {
+		
+      if(phonebookArr[i] === query) {
+			
+         results.push(phonebookArr[i]);
+        
+      } 
+    
+   }
+	
+   if(results.length > 0) {
+		
+      return results;
+	
+   }
+	
+   else return "Unable to find query";
+
 }
 ```
