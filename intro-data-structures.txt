@@ -3,41 +3,63 @@
 > 1. A line of people at an amusement park ride.....
 
 A:
-```pseudocode
+```javascript
 (a)
-INIT Members as an array 
-SET Members to: "Vivian", "Ava", "Josh", "Patrick", and "Mike"
+let members = ["Vivian", "Ava", "Josh", "Patrick", "Mike"];
 
-(b)	
-INIT NewMember 
-SET NewMember to "Mary" 
-ADD NewMember to Members at the (last index + 1)
+(b)
+function addMember(name) {
+   members.push(name);
+   return "New member successfully added!";
+}	
 
-(c)
-FUNCTION findMember(query) 
-	SEARCH Members for the index of query
-	RETURN index of query
-END FUNCTION
+addMember("Mary");
 
-CALL findMember("Josh")
+(c), (d)
+function findMember(name) {
+	
+   if (members.indexOf(name) == -1) {
+		
+      return "Error: Unable to find this member";
+	
+   } else {
+		
+      return members.indexOf(name);
+	
+   }
 
-(d)
-FUNCTION findMember(query)
-	SEARCH Members for index of query
-	IF Members contains the query THEN
-		RETURN index of query
-	ELSE 
-		RETURN "Could not find your query"
-END FUNCTION
+}
 
-CALL findMember("Emily")
+findMember("Josh");
+
+findMember("Emily");
 
 (e)
-SET NewMember to "Melissa"
-ADD NewMember to Members at index of 1 without deleting any members
+function insertCuttingMember(newName, memberName) {
+   let memberNameIndex = findMember(memberName);
+   if (typeof memberNameIndex != 'number') {
+      return "Error: Cannot insert new member because the person they're cutting in front of doesn't exist in members array";
+   }
+   else {
+      members.splice(memberNameIndex, 0, newName);
+      return "New member successfully added!";
+   }
+}
+
+insertCuttingMember("Melissa", "Ava");
 
 (f)
-DELETE Member from Members at index of 3
+function removeMember(name) {
+   let memberIndex = findMember(name);
+   if (typeof memberIndex != 'number') {
+      return "Error: Cannot delete, no such member found";
+   } else {
+      members.splice(memberIndex, 1);
+      return name + " was successfully deleted";
+   }
+}
+
+removeMember("Patrick");
 
 ```
 
