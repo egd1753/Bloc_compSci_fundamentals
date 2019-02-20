@@ -166,9 +166,9 @@ class LinkedList {
     this.tail = null;
   }
 
-  insertFromHead(value) {
-    var newNode = new Node(value);
-    var current;
+  append(value) {
+    let newNode = new Node(value);
+    let current;
 
     if (this.head === null) {
       this.head = newNode;
@@ -176,7 +176,7 @@ class LinkedList {
     }
  
     else {
-      var current = this.head;
+      let current = this.head;
 
       while (current.next !== null) {
         current = current.next;
@@ -188,11 +188,19 @@ class LinkedList {
   }
 
   reverse() {
+    let current = this.head, previous, temp;
     
+    while (current) {
+      temp = current.next;
+      current.next = previous;
+      previous = current;
+      current = temp;
+    }
+    return previous;
   }	
 
   print() {
-    var current = this.head;
+    let current = this.head;
 
     while(current !== null) {
       console.log(current.value);
