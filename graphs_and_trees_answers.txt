@@ -2,7 +2,7 @@
 
 > What is a binary tree and what makes it unique to other trees?
 
-A: Trees are data structures that consist of nodes. In a binary tree, a node may point to either a left or right child node, unlike a linked list (where each node can only point to the next node or previous node). 
+A: Trees are data structures that consist of nodes, with their root node at the top (sort of like a 'head' pointer in a linked list) and child nodes branching downwards from the root node. In a binary tree, a node may point down to a maximum of 2 nodes, either a left or right child node (unlike a linked list where each node can only point to the next node or previous node). A node need not have child nodes, and if a node doesn't, it's called a Leaf node. 
 
 > What is a heuristic?
 
@@ -10,17 +10,63 @@ A: It's an educated guess that an algorithm makes in order to solve the problem 
 
 > What is another problem besides the shortest-path problem that requires the use of heuristics?
 
-A: 
+A: Another programming problem involving heuristics involves natural language processing tools. Many of these programs rely on algorithms and machine learning/heuristics. They make educated guesses as to what a user is saying, based on factors like past input from the user. 
 
 > What is the difference between a depth-first search and a breadth-first search?
 
 A: 
+A depth-first search (DFS) is one of two known ways to search a tree. It's the process of searching for a desired element by traveling down a single branch, then up to the next branch (moving either left or right) checking any unvisited nodes, then down again and so on, until we either find the element we're looking for or have searched every node for it. 
+
+A breadth-first search checks rows instead of "columns". We could search the root node first, then the child nodes of that root node, then child nodes of each of the child nodes of the root node, and so on. The deeper we get, the more nodes there are that we have to check. 
 
 > Explain in your own words what an undirected, a-cyclic, unweighted graph is.
 
-A: 
+A: Undirected means that the intended direction of travel is ambiguous. A-cyclic means that the data structure has a start and stopping point, and doesn't loop back on itself (ex. linked lists and trees). Unweighted means that the cost of traveling between nodes isn't factored in (ex. linked lists and most trees). An example of a graph like this could be a social networking site, where the nodes are people and the edges are friendships. 
 
 > What kind of graph is a binary search tree?
 
+A: It is an undirected, a-cyclic, unweighted graph. 
+
+
+# Programming Questions
+
+> Given a Binary Search Tree and a value, write a function that checks to see whether the value exists within the tree.
+
+A: I will solve this problem by using a BFS to search for the desired value by: starting with the root node search all children from left to right, then repeating the process on the level below, etc. 
+
+```javascript
+
+function findQuery(tree, query) {
+   let currentNode = tree.root;
+
+   while(currentNode) {
+      if(currentNode.value == query) {
+         return "The value " + query + " exists in the tree.";
+      } 
+      else if (currentNode.value > value) {
+         currentNode = currentNode.left;
+      } else {
+	currentNode = currentNode.right;
+      }
+   return "The value " + query + " doesn't exist in the tree.";   
+   }
+};
+
+```
+
+> Given a Binary Search Tree and two nodes, n1 and n2, write a function that finds the distance between the two nodes.
+
 A: 
+
+```javascript
+
+function calculateNodeDistance(node1, node2) {
+   if(node1 == node2) {
+      return SOMETHING
+   }
+
+   for ()
+};
+
+```
 
