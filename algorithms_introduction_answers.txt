@@ -1,0 +1,87 @@
+# Exercises
+
+> Using proper pseudo-code, describe the following primitive algorithms:
+
+A: 
+Making coffee:
+
+FUNCTION makeCoffee
+INPUT coffee, coffeeFilter, coffeeMaker, water
+PUT coffeeFilter in coffeeMaker
+POUR coffee into coffeeMaker
+POUR water into coffeeMaker
+INIT coffee brewing process by pressing brew button
+WHILE coffeeIsBrewing
+	read favorite book
+ENDWHILE
+IF coffeeOutput.isStrong THEN
+	drink and enjoy coffeeOutput
+ELSE 
+	throw out coffeeOutput and coffeeFilter
+	CALL makeCoffee
+ENDIF
+END FUNCTION	
+
+Washing dishes:
+
+FUNCTION washDishesInSink
+INPUT dirtyDishes, sponge, and dishSoap
+PUT dishSoap on sponge
+WHILE dirtyDishes
+	RUN hot water in left sink
+	FOR each dirtyDish 
+		PUT dish in left sink under hot water
+		SCRUB dish with soapy sponge until clean
+		PUT dish in right sink until dry
+	END FOR
+END WHILE
+END FUNCTION
+
+Own choice: Making breakfast
+
+FUNCTION makeStandardBreakfast
+INPUT eggs, spatula, skillet, oven, spices, bread, jam, knife, butter, toasterOven, plate, and fork
+
+PUT skillet on oven.burner
+SET oven.burner.heat to medium
+PUT butter in skillet using knife
+FOR EACH egg IN eggs
+	crack shell on skillet
+	PUT egg in skillet
+	throw out egg shell
+END FOR
+PUT spices over eggs
+
+PUT butter on bread
+PUT bread in toasterOven
+SET toasterOven.level to lightly toasted
+INIT toasterOven.toastBread
+
+IF eggs.isCooked
+	GET eggs from skillet with spatula
+	PUT eggs on plate
+	SET oven.burner.heat to zero
+END IF
+
+IF toasterOven.toastBread.isCompleted 
+	GET bread from toasterOven
+	PUT bread on plate
+	PUT jam on bread with knife
+END IF
+
+EAT eggs and bread with knife and fork
+
+END FUNCTION 
+
+> As with the knot algorithm, there may be more than one way to solve the problem. It is essential to try to pick the best algorithm for a situation. Name three companies who created an algorithm that made them successful, e.g., Google's search algorithm. It doesn't need to be a tech example (such as a recipe or manufacturing a product). Google's algorithm produces more relevant results than other search engines; what about each of your cases make them stand out?
+
+A: 
+Coca-Cola: Pemberton set samples of his prototype formula to local pharmacies where people gathered. Pemberton received feedback from them, and developed a recipe tailored to customer's tastes. Since 1903, the recipe has stayed pretty much the same (aside from the "New Coke" mishap in 1985), saved Coca-Cola the time/money of creating new formuals for each market...their formula is basically universally liked. 
+
+Uber: Developed complex algorithms that try to efficiently pair a supply of drivers with the demand for rides.  
+
+Facebook: Developed algorithms to guide their news feed. By default, a user's news feed is designed so that they are seeing updates that have been predetermined by algorithms. In this way, they can tailor each user's feed to fit their interests, to keep them on the website longer. 
+
+> Hypothesize about what constitutes an efficient algorithm versus an inefficient algorithm.
+
+A: I would think that an efficient algorithm follows clean coding principles, uses data structures like hash tables or binary search trees to find data quicker, and is built to be adaptable and scalable.  An inefficient algorithm would be the opposite. 
