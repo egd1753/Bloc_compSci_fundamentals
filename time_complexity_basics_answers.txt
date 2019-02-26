@@ -1,0 +1,37 @@
+# Exercises
+
+> What is time complexity and what is its relation to algorithms?
+
+A: Time complexity is expressed as a function that estimates how long it takes for a program to execute. Time complexity is how we measure and compare the efficiency of algorithms.
+
+> What is runtime?
+
+A: Runtime can be used synonymously with time complexity, but it can also more specifically refer to the alctual physical time duration of a given algorithm.
+
+> How is the runtime of an algorithm calculated?
+
+A: We express it as a function of the variable n, which stands for the input size. We estimate time complexity/runtime assuming that n is infinite (in order to know what's the worst case scenario, referring to it as the "Big O"). We add up how many instructions the algorithm will execute with an input of n, then simplify that expression to the largest term. We also drop constants.  
+
+> Name the six types of algorithm growth rates we saw in this checkpoint and list them in order of most efficient to least efficient. Now Google another algorithmic growth rate not covered and place it in the correct spot in your list.
+
+A: O(1), O(log n), O(n), O(n log n), O(n^2), O(2^n), O(n!)
+
+> Choose one of the algorithmic growth rates from the last question and make a comparison to a real-life situation.
+
+A: O(n): A shipment of product arrives in a store. The receiver must scan the barcode on each item to ensure that the product delivered matches the product ordered. On Mondays 20 items arrived, and the receiver scanned 20 items. On Wednesday, 100 items arrived, and the receiver scanned 100 items. 
+
+> Determine the time complexity of the following snippet of code. It is commonly known as a linear search.
+
+A: O(n)
+
+> Determine the time complexity of the following snippet of code.
+
+A: O(n^2)
+
+> Determine the time complexity of the following snippet of code. It is commonly known as the Fibonacci sequence.
+
+A: O(n!)
+
+> Out of the code snippets you just saw, which is the most time efficient?
+
+A: The most efficient is question 6 that has a time complexity of O(n).
