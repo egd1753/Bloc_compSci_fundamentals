@@ -1,0 +1,47 @@
+# Exercises
+
+> Define and compare recursion and iteration.
+
+A: Recursion is the technique of making a procedure (like a function) call itself, and is set up in such a way that every call breaks the problem into a smaller piece to eventually hit the base case, which breaks us out of the recursive case. Iteration uses loops to repeat a process instead of calling itself. 
+
+> Name five algorithms that are commonly implemented by recursion.
+
+A: 1) finding the factorial of n, finding the nth Fibonacci number, bogosort algorithm, mergesort algorithm, binary search. 
+
+> When should you use recursion, and when should you avoid recursion? Give examples for each.
+
+A: Use recursion when an algorithm can be defined as a combination of sub-results starting with known cases (e.g. finding the factorial of a number). Avoid recursion when the time complexity gets too expensive (e.g. when finding a large Fibonacci number). 
+
+> Compare the recursive and iterative solutions to the three algorithms from the checkpoint (factorial, maximum, and fibonacci). What is similar, and what is different?
+
+A: They are similar in that they all contain conditional statements and have a way to exit the function (base case or condition in a FOR loop). They are different in that recursive functions don't use loops.  
+
+> Given a multi-dimensional collection (such as an array) where the number of dimensions is unknown, write a recursive algorithm to count the number of items in the entire collection.
+
+A: 
+```javascript
+
+function countItems(arrayList) {
+   let result = 0;
+   
+}
+
+```
+
+> A palindrome is a word or phrase whose spelling is the same either direction (e.g., racecar). Write a recursive algorithm to determine if a given word or phrase is a palindrome.
+
+A: 
+```javascript
+
+function isPalindrome(wordPhrase) {
+   if 
+}
+
+```
+
+> Google Easter Egg: Google the term "recursion". Google will prompt you with "Did you mean: recursion". Explain why this behavior exhibits properties of recursion.
+
+A: 
+
+
+
