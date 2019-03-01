@@ -30,7 +30,7 @@ A: O(n^2)
 
 > Determine the time complexity of the following snippet of code. It is commonly known as the Fibonacci sequence.
 
-A: O(n!)
+A: O(2^n)
 
 > Out of the code snippets you just saw, which is the most time efficient?
 
