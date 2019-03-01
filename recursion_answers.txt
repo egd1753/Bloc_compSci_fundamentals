@@ -21,9 +21,22 @@ A: They are similar in that they all contain conditional statements and have a w
 A: 
 ```javascript
 
-function countItems(arrayList) {
-   let result = 0;
-   
+function flattenCollection(collection) {
+  var flattenedArray = [];
+  
+  for (let i = 0; i < collection.length; i++) {
+    if (Array.isArray(collection[i])) {
+      flattenedArray = flattenedArray.concat(flattenCollection(collection[i]));
+    } else {
+      flattenedArray.push(collection[i]);
+    }
+  }
+  return flattenedArray;
+}
+
+function findCollectionLength(collection) {
+  const flattenedCollection = flattenCollection(collection);
+  return flattenedCollection.length;
 }
 
 ```
@@ -33,15 +46,32 @@ function countItems(arrayList) {
 A: 
 ```javascript
 
+function reverseString(wordPhrase) {
+    if(wordPhrase.length <= 1) {
+        return wordPhrase;
+    }
+    else {
+        return wordPhrase[wordPhrase.length - 1] + reverseString(wordPhrase.substring(0, wordPhrase.length - 1) );
+    } 
+}
+
 function isPalindrome(wordPhrase) {
-   if 
+    if(wordPhrase.length < 3) {
+        return "invalid input";
+    }
+    let reversedWordPhrase = reverseString(wordPhrase);
+    if(reversedWordPhrase == wordPhrase) {
+        return true;
+    } else {
+        return false;
+    }
 }
 
 ```
 
 > Google Easter Egg: Google the term "recursion". Google will prompt you with "Did you mean: recursion". Explain why this behavior exhibits properties of recursion.
 
-A: 
+A: When the "Did you mean: recursion" is clicked on, the page simply reloads your search with the same prompt, which is basically how recursion works. (I just read an article on Medium that did something similar: the author said "If you want to understand recursion, you should read THIS article first" which brought you right back to the same article :)  ).
 
 
 
