@@ -62,10 +62,15 @@ A:
 
 function calculateNodeDistance(node1, node2) {
    if(node1 == node2) {
-      return SOMETHING
+      return node2;
    }
-
-   for ()
+   for(each node that node1 connects to) {
+      if(node is closer to node2 than node1) {
+         call calculateNodeDistance(node, node2) returning path;
+         return node1 + distance;
+      }
+   }
+   
 };
 
 ```
