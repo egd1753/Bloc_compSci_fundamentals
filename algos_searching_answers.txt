@@ -2,33 +2,33 @@
 
 # Short Answers
 
-> What is a real-life scenario that uses linear search?
+> 1. What is a real-life scenario that uses linear search?
 
 A: A shipment of unassembled furniture arrives in boxes, but none of the boxes are labeled. All of the boxes are the same size. To find Spring Collection loveseat from XYZ Companies, we open the first box, then the second, and so forth until we find that loveseat. If we searched every box and didn't find it, we know that either we didn't order the item, or the supplier didn't ship it out. 
 
-> What is a real-life scenario that uses binary search?
+> 2. What is a real-life scenario that uses binary search?
 
 A: We are searching the dictionary for the word "Computer". We start with the first letter "C" and compare that with the middle letter of the alphabet "M". Since "C" is smaller than "M", we throw out the letters "M-Z". On the second iteration, we compare "C" with the middle letter of the letters spanning "A-L", which is "F". Since "C" is smaller than "F", we through out the letters "F-L", and continue this process until we end on the letter "C", then continue on with the next letters in the word "Computer" until we arrive at that word in the dictionary. 
 
-> Given the alphabetically sorted collection in this checkpoint, how many iterations would it take to find the value G using linear search?
+> 3. Given the alphabetically sorted collection in this checkpoint, how many iterations would it take to find the value G using linear search?
 
 A: 7 
 
-> Given the alphabetically sorted collection in this checkpoint, how many iterations would it take to find the value G using binary search?
+> 4. Given the alphabetically sorted collection in this checkpoint, how many iterations would it take to find the value G using binary search?
 
-A: 4 
+A: 3
 
-> Given an unsorted collection of a million items, which algorithm would you choose between linear search and binary search? Explain your reasoning.
+> 5. Given an unsorted collection of a million items, which algorithm would you choose between linear search and binary search? Explain your reasoning.
 
 A: A linear search, because a binary search simply doesn't work on an unsorted collection. 
 
-> Given a sorted collection of a million items, which algorithm would you choose between linear search and binary search? Explain your reasoning.
+> 6. Given a sorted collection of a million items, which algorithm would you choose between linear search and binary search? Explain your reasoning.
 
 A: A linear search worst-case scenario would have to do one million iterations (if the query happens to be the very last item), making the time complexity O(n). Because this collection is sorted, we can use a binary search, which has a has a time complexity of O(log n) which is more efficient. Therefore, we should use a binary search. 
 
 # Programming Assignment
 
-> You and a friend have set a wager to see who can find the word "Albatross" in the dictionary the fastest. Write a program to allow you to win the bet.
+> 1. You and a friend have set a wager to see who can find the word "Albatross" in the dictionary the fastest. Write a program to allow you to win the bet.
 
 A: 
 ```javascript
@@ -36,18 +36,17 @@ A:
 function queryDictionary(dictionary, word) {
    let lowIndex = 0;
    let highIndex = dictionary.length - 1;
-   let midIndex;
+   let midIndex = Math.floor(dictionary.length / 2);
 
    while(lowIndex <= highIndex) {
-      midIndex = (lowIndex + highIndex) / 2
-      if(midIndex > word) {
+      if(dictionary[midIndex] > word) {
          highIndex = midIndex - 1;
       }
-      else if(midIndex < word) {
+      else if(dictionary[midIndex] < word) {
          lowIndex = midIndex + 1;
       }
       else {
-         return midIndex;
+         return dictionary[midIndex];
       }
    }
 
@@ -56,7 +55,7 @@ function queryDictionary(dictionary, word) {
 
 ```
 
-> You work at a pet store, and a child has asked you to net the only white-spotted goldfish from the fish tank. Write a program that will help you net the right fish.
+> 2. You work at a pet store, and a child has asked you to net the only white-spotted goldfish from the fish tank. Write a program that will help you net the right fish.
 
 A:
 ```javascript
