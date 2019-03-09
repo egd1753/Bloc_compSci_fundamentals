@@ -25,7 +25,7 @@ A: Undirected means that the intended direction of travel is ambiguous. A-cyclic
 
 > What kind of graph is a binary search tree?
 
-A: It is an undirected, a-cyclic, unweighted graph. 
+A: It is a directed, a-cyclic, unweighted graph. 
 
 
 # Programming Questions
