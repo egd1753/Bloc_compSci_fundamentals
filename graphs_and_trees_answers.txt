@@ -121,13 +121,9 @@ class BinarySearchTree {
 
 
 let node8 = new TreeNode(8),
-       
     node3 = new TreeNode(3),
-       
     node1 = new TreeNode(1),
-       
     node6 = new TreeNode(6),
-       
     node4 = new TreeNode(4),
     node7 = new TreeNode(7),
     node10 = new TreeNode(10),
@@ -136,7 +132,6 @@ let node8 = new TreeNode(8),
 
 
 node8.left = node3;
-   
 node3.left = node1;
 node3.right = node6;
 node6.left = node4;
@@ -150,8 +145,8 @@ let newTree = new BinarySearchTree();
 newTree.root = node8;
 
 console.log(newTree.findDistanceBetweenNodes(4, 10));
-   console.log(newTree.findDistanceBetweenNodes(8, 10));
-   console.log(newTree.findDistanceBetweenNodes(1, 14));
+console.log(newTree.findDistanceBetweenNodes(8, 10));
+console.log(newTree.findDistanceBetweenNodes(1, 14));
 console.log(newTree.findDistanceBetweenNodes(1, 33));
 
 ```
