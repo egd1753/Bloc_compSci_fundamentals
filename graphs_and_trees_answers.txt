@@ -1,0 +1,153 @@
+#Exercises
+
+> What is a binary tree and what makes it unique to other trees?
+
+A: Trees are data structures that consist of nodes, with their root node at the top (sort of like a 'head' pointer in a linked list) and child nodes branching downwards from the root node. In a binary tree, a node may point down to a maximum of 2 nodes, either a left or right child node (unlike a linked list where each node can only point to the next node or previous node). A node need not have child nodes, and if a node doesn't, it's called a Leaf node. 
+
+> What is a heuristic?
+
+A: It's an educated guess that an algorithm makes in order to solve the problem faster. Accuracy is sacrificed, although sometimes there might not even be a perfectly accurate answer. 
+
+> What is another problem besides the shortest-path problem that requires the use of heuristics?
+
+A: Another programming problem involving heuristics involves natural language processing tools. Many of these programs rely on algorithms and machine learning/heuristics. They make educated guesses as to what a user is saying, based on factors like past input from the user. 
+
+> What is the difference between a depth-first search and a breadth-first search?
+
+A: 
+A depth-first search (DFS) is one of two known ways to search a tree. It's the process of searching for a desired element by traveling down a single branch, then up to the next branch (moving either left or right) checking any unvisited nodes, then down again and so on, until we either find the element we're looking for or have searched every node for it. 
+
+A breadth-first search checks rows instead of "columns". We could search the root node first, then the child nodes of that root node, then child nodes of each of the child nodes of the root node, and so on. The deeper we get, the more nodes there are that we have to check. 
+
+> Explain in your own words what an undirected, a-cyclic, unweighted graph is.
+
+A: Undirected means that the intended direction of travel is ambiguous. A-cyclic means that the data structure has a start and stopping point, and doesn't loop back on itself (ex. linked lists and trees). Unweighted means that the cost of traveling between nodes isn't factored in (ex. linked lists and most trees). An example of a graph like this could be a social networking site, where the nodes are people and the edges are friendships. 
+
+> What kind of graph is a binary search tree?
+
+A: It is a directed, a-cyclic, unweighted graph. 
+
+
+# Programming Questions
+
+> Given a Binary Search Tree and a value, write a function that checks to see whether the value exists within the tree.
+
+A: I will solve this problem by using a BFS to search for the desired value by: starting with the root node search all children from left to right, then repeating the process on the level below, etc. 
+
+```javascript
+
+function findQuery(tree, query) {
+   let currentNode = tree.root;
+
+   while(currentNode) {
+      if(currentNode.value == query) {
+         return "The value " + query + " exists in the tree.";
+      } 
+      else if (currentNode.value > value) {
+         currentNode = currentNode.left;
+      } else {
+	currentNode = currentNode.right;
+      }
+   return "The value " + query + " doesn't exist in the tree.";   
+   }
+};
+
+```
+
+> Given a Binary Search Tree and two nodes, n1 and n2, write a function that finds the distance between the two nodes.
+
+A: 
+
+```javascript
+
+class TreeNode {
+  constructor(data) {
+    this.data = data;
+    this.left = null;
+    this.right = null;
+  }
+};
+
+
+class BinarySearchTree {
+  constructor() {
+    this.root = null;
+  }
+
+  findLowestCommonAncestor(root, node1, node2) {
+    let currentNode = root;
+    while (currentNode) {
+      if(node1 < currentNode.data && node2 < currentNode.data) {
+        currentNode = currentNode.left;
+      } else if (node1 > currentNode.data && node2 > currentNode.data) {
+          currentNode = currentNode.right;
+      } else {
+	  return currentNode;
+      }
+    }
+  };
+
+  calculateNodeDistance(currentNode, searchedData) {
+    let counter = 0;
+    while (currentNode) {
+      if(searchedData == currentNode.data) {
+        return counter;
+      } else if (searchedData < currentNode.data) {
+          currentNode = currentNode.left;
+          counter++;
+      } else {
+          currentNode = currentNode.right;
+	  counter++;
+      }
+    }
+    return false;
+  };
+
+  findDistanceBetweenNodes(node1, node2) {
+    let lowestCommonAncestor = this.findLowestCommonAncestor(this.root, node1, node2);
+    let node1Distance = this.calculateNodeDistance(lowestCommonAncestor, node1);
+    let node2Distance = this.calculateNodeDistance(lowestCommonAncestor, node2);
+
+    if(node1Distance !== false && node2Distance !== false) {
+      let totalDistance = node1Distance + node2Distance;
+      return "The distance between the nodes " + node1 + " and " + node2 + " is " + totalDistance;
+    } else {
+        return "Error: one of these nodes doesn't exist in the tree";
+    }
+  };
+
+
+};
+
+
+let node8 = new TreeNode(8),
+    node3 = new TreeNode(3),
+    node1 = new TreeNode(1),
+    node6 = new TreeNode(6),
+    node4 = new TreeNode(4),
+    node7 = new TreeNode(7),
+    node10 = new TreeNode(10),
+    node14 = new TreeNode(14),
+    node13 = new TreeNode(13);
+
+
+node8.left = node3;
+node3.left = node1;
+node3.right = node6;
+node6.left = node4;
+node6.right = node7;
+node8.right = node10;
+node10.right = node14;
+node14.left = node13;
+
+let newTree = new BinarySearchTree();
+
+newTree.root = node8;
+
+console.log(newTree.findDistanceBetweenNodes(4, 10));
+console.log(newTree.findDistanceBetweenNodes(8, 10));
+console.log(newTree.findDistanceBetweenNodes(1, 14));
+console.log(newTree.findDistanceBetweenNodes(1, 33));
+
+```
+

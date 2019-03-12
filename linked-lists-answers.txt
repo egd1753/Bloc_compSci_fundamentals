@@ -1,0 +1,202 @@
+# Exercises
+
+> What are some pros and cons of using linked lists instead of arrays?
+
+A: Pros: linked lists don't have empty placeholders, linked lists can scale up to huge sizes because each node is independent in memory, which makes them more flexible. Cons: more complex than arrays, no constant time to access elements which can make accessing elements inefficient.  
+
+> Come up with a real world example of a linked list.
+
+A: A linked list is kind of like trying to get out of an "escape room". To escape, you normally have to start with the first clue, which can point you to a key, picture, lock combination, etc. You will then be pointed to the next clue, and so on, until you eventually get the last clue that gives a key that unlocks the door. You cannot find this key that you need until you have gone through all of the clues, starting from the first one.
+
+# Programming Questions
+
+> The linked list push function should take a value, create a node, and add it to the end of a list. Below is pseudocode for a push function for a singly linked list. However, there is something wrong with it. Submit both an explanation of the bug and a functional implementation of the method.
+
+A: This pseudocode is lacking a loop; there should be one in the "ELSE" statement so that the function can cycle through all the nodes and get to the end of the list, where the new node is to be added. Here is a this function written correctly in JavaScript:
+
+```javascript
+function push(element) {
+   var node;
+   node.value = element;
+   node.next = null;
+
+   if (this.head === null) {
+      this.head = node;
+   } 
+   else {
+      var current = this.head;
+      while (current.next !== null) {
+         current = current.next;
+      }
+      current.next = node;      
+   {
+}
+```
+
+> Given an unsorted singly linked list, remove all duplicates from the linked list.
+
+A: 
+```javascript
+
+class Node {
+  constructor(value) {
+    this.value = value;
+    this.next = null;
+  }
+}
+
+//Linked List
+class LinkedList {
+  constructor() {
+    this.head = null;
+  }
+
+  insert(value) {
+    var newNode = new Node(value);
+
+    if (this.head === null) {
+      this.head = newNode;
+    } else {
+      var current = this.head;
+
+      while (current.next !== null) {
+        current = current.next;
+      }
+
+      current.next = newNode;
+    }
+  }
+
+     removeDuplicates() {
+       if (!this.head || !this.head.next) {
+    	console.log('No duplicates were found. Empty or a single element Linked List.');
+    	return;
+  		}
+
+		var pointer1;
+		var pointer2;
+		var pointer3;
+		var value;
+		pointer2 = this.head;
+
+		while (pointer2) {
+			value = pointer2.value;
+			pointer1 = pointer2;
+			pointer3 = pointer1.next;
+
+			while (pointer3) {
+				if (pointer3.value === value) {
+					pointer1.next = pointer3.next;
+				} else {
+					pointer1 = pointer3;
+				}
+				pointer3 = pointer3.next;
+			}
+			pointer2 = pointer2.next;
+		}
+   }	
+
+  print() {
+    var current = this.head;
+
+    while(current !== null) {
+      console.log(current.value);
+      current = current.next;
+    }
+  }
+}
+
+```
+
+
+> Given an unsorted singly linked list, reverse it.
+
+A: 
+```javascript
+
+class Node {
+  constructor(value) {
+    this.value = value;
+    this.next = null;
+  }
+}
+
+class Stack {
+  constructor() {
+    this.top = null;
+  }
+
+  push(value) {
+    var newNode = new Node(value);
+
+    newNode.next = this.top;
+
+    this.top = newNode;
+  }
+
+  pop(){
+    var temp = this.top;
+
+    this.top =  temp.next;
+
+    return temp;
+  }
+
+  print() {
+    while (this.top !== null) {
+      console.log(this.pop().value);
+    }
+  }
+}
+
+```
+
+
+class Node {
+  constructor(value) {
+    this.value = value;
+    this.next = null;
+  }
+}
+
+
+class LinkedList {
+  constructor() {
+    this.head = null;
+    this.tail = null;
+  }
+
+  insertFromHead(value) {
+    var newNode = new Node(value);
+    var current;
+
+    if (this.head === null) {
+      this.head = newNode;
+      this.tail = newNode;
+    }
+ 
+    else {
+      var current = this.head;
+
+      while (current.next !== null) {
+        current = current.next;
+      }
+
+      current.next = newNode;
+      this.tail = current.next;
+    }
+  }
+
+  reverse() {
+    
+  }	
+
+  print() {
+    var current = this.head;
+
+    while(current !== null) {
+      console.log(current.value);
+      current = current.next;
+    }
+  }
+}
