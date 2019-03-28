@@ -124,6 +124,7 @@ class Node {
 class LinkedList {
   constructor() {
     this.head = null;
+    this.tail = null;
   }
 
   insert(value) {
@@ -139,6 +140,7 @@ class LinkedList {
       }
 
       current.next = newNode;
+      this.tail = current.next;
     }
   }
 
@@ -147,7 +149,7 @@ class LinkedList {
 	previous,
 	tmp;
 
-	while (node) {
+	while (node !== null) {
 	  tmp = node.next;
 	  node.next = previous;
 	  previous = node;
@@ -159,6 +161,14 @@ class LinkedList {
   print() {
     var current = this.head;
     while(current !== null) {
+      console.log(current.value);
+      current = current.next;
+    }
+  }
+
+  printReversed() {
+    var current = this.tail;
+    while (current !== null) {
       console.log(current.value);
       current = current.next;
     }
