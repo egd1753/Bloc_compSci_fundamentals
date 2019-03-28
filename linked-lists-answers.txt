@@ -120,90 +120,51 @@ class Node {
   }
 }
 
-class Stack {
-  constructor() {
-    this.top = null;
-  }
-
-  push(value) {
-    var newNode = new Node(value);
-
-    newNode.next = this.top;
-
-    this.top = newNode;
-  }
-
-  pop(){
-    var temp = this.top;
-
-    this.top =  temp.next;
-
-    return temp;
-  }
-
-  print() {
-    while (this.top !== null) {
-      console.log(this.pop().value);
-    }
-  }
-}
-
-```
-
-
-class Node {
-  constructor(value) {
-    this.value = value;
-    this.next = null;
-  }
-}
-
 
 class LinkedList {
   constructor() {
     this.head = null;
-    this.tail = null;
   }
 
-  append(value) {
-    let newNode = new Node(value);
-    let current;
+  insert(value) {
+    var newNode = new Node(value);
 
     if (this.head === null) {
       this.head = newNode;
-      this.tail = newNode;
-    }
- 
-    else {
-      let current = this.head;
+    } else {
+      var current = this.head;
 
       while (current.next !== null) {
         current = current.next;
       }
 
       current.next = newNode;
-      this.tail = current.next;
     }
   }
 
   reverse() {
-    let current = this.head, previous, temp;
-    
-    while (current) {
-      temp = current.next;
-      current.next = previous;
-      previous = current;
-      current = temp;
-    }
-    return previous;
+    let node = this.head,
+	previous,
+	tmp;
+
+	while (node) {
+	  tmp = node.next;
+	  node.next = previous;
+	  previous = node;
+	  node = tmp;
+	}
+	return previous;
   }	
 
   print() {
-    let current = this.head;
-
+    var current = this.head;
     while(current !== null) {
       console.log(current.value);
       current = current.next;
     }
   }
 }
+
+
+```
+
