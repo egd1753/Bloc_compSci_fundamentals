@@ -18,11 +18,7 @@ A: Hash tables vs. objects isn't comparing apples to oranges, but rather is more
 
 > 5. Determine whether you would use a hash table or an object to store each of the following pieces of data:...
 
-A: "A list of pets and their unique names.": hash table, 
-"The name, age, and the birthday of your best friend.": object,
-"The name and location of every company in a given city.": hash table,
-"All of the books checked out from a library by a particular individual.": hash table,
-"The primary and secondary phone numbers for a contact.": object
+A: "A list of pets and their unique names.": hash table, "The name, age, and the birthday of your best friend.": object, "The name and location of every company in a given city.": hash table, "All of the books checked out from a library by a particular individual.": hash table, "The primary and secondary phone numbers for a contact.": object
 
 > 6. Build a system that allows a sales associate to enter a customer's name, address, and phone number into the system and look up customers using their phone numbers. Store this information in a hash table.
 
@@ -30,54 +26,64 @@ A:
 
 ```javascript
 
+class Customer {
+    constructor(name, address, phoneNumber) {
+        this.name = name;
+        this.address = address;
+        this.phoneNumber = phoneNumber;
+    }
+}
+
 var hashFunction = (phoneNumKey, maxSize) => {
-	var hashCode = 0;
-	for (let i = 0; i < phoneNumKey.length; i++) {
-		hashCode += phoneNumKey.charCodeAt(i);
-	}
-	return hashCode % maxSize;
+    var hashCode = 0;
+    for (let i = 0; i < phoneNumKey.length; i++) {
+        hashCode += phoneNumKey.charCodeAt(i);
+    }
+    return hashCode % maxSize;
 }
 
 let customerDataHashTable = function() {
-	let storageArray = [];
-	const storageLimit = 10;
+    let storageArray = [];
+    const storageLimit = 20;
 
-	this.print = function() {
-		console.log(storage);
-	}
+    this.print = function() {
+        console.log(storageArray);
+    }
 
-	this.inputNewCustomer = function(key, value) {
-		var indexNum = hashFunction(key, storageLimit);
-		if (storageArray[indexNum] === undefined) {
-			storageArray[indexNum] = [ 
-				[key, value] 
-			];
-		} else {
-			var inserted = false;
-			for (let i = 0; i < storageArray[indexNum].length; i++) {
-				if (storageArray[indexNum][i][0] === key) {
-					storageArray[indexNum][i][1] = value;
-					inserted = true;
-				}
-			}
-			if (inserted === false) {
-				storageArray[indexNum].push([key, value]);
-			}
-		}
-	};
+    this.inputNewCustomer = function(name, address, phoneNumber) {
+        let key = phoneNumber;
+        let value = new Customer(name, address, phoneNumber);
+        var indexNum = hashFunction(key, storageLimit);
+	console.log(indexNum);
 
-	this.searchByPhone = function(phoneNumKey) {
-		var indexNum = hashFunction(phoneNumKey, storageLimit);
-		if (storageArray[indexNum] === undefined) {
-			return "We didn't find the droid that you're looking for";
-		} else {
-			for (let i = 0; i < storageArray[indexNum].length; i++) {
-				if (storageArray[indexNum][i][0] === phoneNumKey) {
-					return storageArray[indexNum][i][1];
-				}
-			}
-		}
-	};
+        if (storageArray[indexNum] === undefined) {
+            storageArray[indexNum] = [[key, value]];
+        } else {
+            var inserted = false;
+            for (let i = 0; i < storageArray[indexNum].length; i++) {
+                if (storageArray[indexNum][i][0] === key) {
+                    storageArray[indexNum][i].push(value);
+                    inserted = true;
+                }
+            }
+            if (inserted === false) {
+                storageArray[indexNum].push([key, value]);
+            }
+        }
+    };
+
+    this.searchByPhone = function(phoneNumKey) {
+        var indexNum = hashFunction(phoneNumKey, storageLimit);
+        if (storageArray[indexNum] === undefined) {
+            return "We didn't find the droid that you're looking for";
+        } else {
+            for (let i = 0; i < storageArray[indexNum].length; i++) {
+                if (storageArray[indexNum][i][0] === phoneNumKey) {
+                    return storageArray[indexNum][i];
+                }
+            }
+        }
+    };
 };
    
 
@@ -91,23 +97,34 @@ let customerDataHashTable = function() {
 
 A: 
 ```javascript
+class Product {
+    constructor(skuNumber, name, description, quantity) {
+        this.skuNumber = skuNumber;
+        this.name = name;
+        this.description = description;
+        this.quantity = "On-hand: " + quantity;
+    }
+}
+
 class InventoryHashTable {
-	constructor() {
-		this.storageArray = [];
-        this.storageLimit = 10;
+    constructor() {
+        this.storageArray = [];
+            this.storageLimit = 40;
+        }
+
+
+    hashFunction(key, storageLimit) {
+    var hashCode = 0;
+    for (let i = 0; i < key.length; i++) {
+        hashCode += key.charCodeAt(i);
+    }
+    return hashCode % storageLimit;
     }
 
 
-	hashFunction(key, storageLimit) {
-	var hashCode = 0;
-	for (let i = 0; i < key.length; i++) {
-		hashCode += key.charCodeAt(i);
-	}
-	return hashCode % storageLimit;
-	}
-
-			
-	inputNewProduct(skuKey, productInfo) {
+    inputNewProduct(skuNumber, name, description, quantity) {
+    let skuKey = skuNumber;
+    let productInfo = new Product(skuNumber, name, description, quantity);
         var indexNumber = this.hashFunction(skuKey, this.storageLimit);
 
         if (this.storageArray[indexNumber] === undefined) {
@@ -116,15 +133,15 @@ class InventoryHashTable {
             var inserted = false;
             for (let i = 0; i < this.storageArray[indexNumber].length; i++) {
                 if (this.storageArray[indexNumber][i][0] === skuKey) {
-					this.storageArray[indexNumber][i][1] = productInfo;
-					inserted = true;
+                    this.storageArray[indexNumber][i].push(productInfo);
+                    inserted = true;
                 }
             }
             if (inserted === false) {
-				this.storageArray[indexNumber].push([skuKey, productInfo]);
-			}
+                this.storageArray[indexNumber].push([skuKey, productInfo]);
+            }
         }
-	}
+    }
 
 
     removeProduct(skuKey) {
@@ -142,17 +159,17 @@ class InventoryHashTable {
 
 
     searchBySku(skuKey) {
-		var indexNumber = this.hashFunction(skuKey, this.storageLimit);
-		if (this.storageArray[indexNumber] === undefined) {
-			return "No product found";
-		} else {
-			for (let i = 0; i < this.storageArray[indexNumber].length; i++) {
-				if (this.storageArray[indexNumber][i][0] === skuKey) {
-					return this.storageArray[indexNumber][i][1];
-				}
-			}
-		}
-	};
+        var indexNumber = this.hashFunction(skuKey, this.storageLimit);
+        if (this.storageArray[indexNumber] === undefined) {
+            return "No product found";
+        } else {
+            for (let i = 0; i < this.storageArray[indexNumber].length; i++) {
+                if (this.storageArray[indexNumber][i][0] === skuKey) {
+                    return this.storageArray[indexNumber][i];
+                }
+            }
+        }
+    };
 
 };
 ```
@@ -161,40 +178,57 @@ class InventoryHashTable {
 
 A: 
 ```javascript
+
+class Newspaper {
+
+  constructor(publisher, date, paper) {
+
+    this.publisher = publisher;
+
+    this.date = date;
+
+    this.paper = paper;
+
+  }
+
+}
+
 class newspaperHashTable {
-	constructor() {
-		this.storageArray = [];
+    constructor() {
+        this.storageArray = [];
         this.storageLimit = 20;
     }
 
 
-	hashFunction(key, storageLimit) {
-	let hashCode = 0;
-	for (let i = 0; i < key.length; i++) {
-		hashCode += key.charCodeAt(i);
-	}
-	return hashCode % storageLimit;
-	}
+    hashFunction(key, storageLimit) {
+    let hashCode = 0;
+    for (let i = 0; i < key.length; i++) {
+        hashCode += key.charCodeAt(i);
+    }
+    return hashCode % storageLimit;
+    }
 
-			
-	inputNewspapers(key, newspaper) {
+
+    inputNewspapers(publisher, date, paper) {
+    let key = publisher + date;
         let indexNumber = this.hashFunction(key, this.storageLimit);
+        let newPaper = new Newspaper(publisher, date, paper);
 
         if (this.storageArray[indexNumber] === undefined) {
-            this.storageArray[indexNumber] = [[key, newspaper]];
+            this.storageArray[indexNumber] = [[key, newPaper]];
         } else {
             var inserted = false;
             for (let i = 0; i < this.storageArray[indexNumber].length; i++) {
                 if (this.storageArray[indexNumber][i][0] === key) {
-					this.storageArray[indexNumber][i][1] = newspaper;
-					inserted = true;
+                    this.storageArray[indexNumber][i].push(newPaper);
+                    inserted = true;
                 }
             }
             if (inserted === false) {
-				this.storageArray[indexNumber].push([key, newspaper]);
-			}
+                this.storageArray[indexNumber].push([key, newPaper]);
+            }
         }
-	}
+    }
 
 
     removeNewspaper(key) {
@@ -211,18 +245,19 @@ class newspaperHashTable {
     }
 
 
-    search(key) {
-		var indexNumber = this.hashFunction(key, this.storageLimit);
-		if (this.storageArray[indexNumber] === undefined) {
-			return "No results found";
-		} else {
-			for (let i = 0; i < this.storageArray[indexNumber].length; i++) {
-				if (this.storageArray[indexNumber][i][0] === key) {
-					return this.storageArray[indexNumber][i][1];
-				}
-			}
-		}
-	};
+    search(publisher, date) {
+        let key = publisher + date;
+        var indexNumber = this.hashFunction(key, this.storageLimit);
+        if (this.storageArray[indexNumber] === undefined) {
+            return "No results found";
+        } else {
+            for (let i = 0; i < this.storageArray[indexNumber].length; i++) {
+                if (this.storageArray[indexNumber][i][0] === key) {
+                    return this.storageArray[indexNumber][i];
+                }
+            }
+        }
+    };
 
 };
 ```
