@@ -144,7 +144,7 @@ class LinkedList {
     }
   }
 
-  reverse() {
+  reverseAndPrint() {
     let node = this.head,
 	previous,
 	tmp;
@@ -168,7 +168,7 @@ class LinkedList {
 
   printReversed() {
     var current = this.tail;
-    while (current !== null) {
+    while (current.next !== null || current.next !== undefined) {
       console.log(current.value);
       current = current.next;
     }
