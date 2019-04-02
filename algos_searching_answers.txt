@@ -36,9 +36,9 @@ A:
 function queryDictionary(dictionary, word) {
    let lowIndex = 0;
    let highIndex = dictionary.length - 1;
-   let midIndex = Math.floor(dictionary.length / 2);
 
    while(lowIndex <= highIndex) {
+      let midIndex = Math.floor((lowIndex + highIndex) / 2);
       if(dictionary[midIndex] > word) {
          highIndex = midIndex - 1;
       }
