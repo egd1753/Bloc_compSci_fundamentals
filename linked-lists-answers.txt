@@ -113,45 +113,6 @@ class LinkedList {
 
 A: 
 ```javascript
-
-class Node {
-  constructor(value) {
-    this.value = value;
-    this.next = null;
-  }
-}
-
-class Stack {
-  constructor() {
-    this.top = null;
-  }
-
-  push(value) {
-    var newNode = new Node(value);
-
-    newNode.next = this.top;
-
-    this.top = newNode;
-  }
-
-  pop(){
-    var temp = this.top;
-
-    this.top =  temp.next;
-
-    return temp;
-  }
-
-  print() {
-    while (this.top !== null) {
-      console.log(this.pop().value);
-    }
-  }
-}
-
-```
-
-
 class Node {
   constructor(value) {
     this.value = value;
@@ -166,16 +127,12 @@ class LinkedList {
     this.tail = null;
   }
 
-  insertFromHead(value) {
+  insert(value) {
     var newNode = new Node(value);
-    var current;
 
     if (this.head === null) {
       this.head = newNode;
-      this.tail = newNode;
-    }
- 
-    else {
+    } else {
       var current = this.head;
 
       while (current.next !== null) {
@@ -187,16 +144,37 @@ class LinkedList {
     }
   }
 
-  reverse() {
-    
+  reverseAndPrint() {
+    let node = this.head,
+	previous,
+	tmp;
+
+	while (node !== null) {
+	  tmp = node.next;
+	  node.next = previous;
+	  previous = node;
+	  node = tmp;
+	}
+	return previous;
   }	
 
   print() {
     var current = this.head;
-
     while(current !== null) {
       console.log(current.value);
       current = current.next;
     }
   }
+
+  printReversed() {
+    var current = this.tail;
+    while (current.next !== null || current.next !== undefined) {
+      console.log(current.value);
+      current = current.next;
+    }
+  }
 }
+
+
+```
+
