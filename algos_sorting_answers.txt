@@ -1,0 +1,77 @@
+# Exercises
+
+> 1. Write pseudocode for bubble sort.
+
+A: 
+FUNCTION bubbleSort(collection)
+   REPEAT
+      INIT swapped to false
+      FOR i = FIRST item of the collection to the second to last item in the collection
+         IF collection[i] > collection[i + 1] THEN
+            INIT temporary to collection[i]
+            SET collection[i] to collection[i + 1]
+            SET collection[i + 1] to temporary
+            SET swapped to true
+         END IF
+      END FOR
+   UNTIL swapped is FALSE
+END FUNCTION
+
+> 2. Write pseudocode for quicksort.
+
+A: 
+FUNCTION swap(collection, firstIndex, secondIndex)
+   INIT temporary to collection at firstIndex
+   SET firstIndex in collection to secondIndex in collection
+   SET secondIndex in collection to temporary
+END FUNCTION
+
+
+FUNCTION partition(collection, left, right)
+   INIT leftPointer to left
+   INIT rightPointer to right
+   INIT pivot to the middle element of collection
+
+   WHILE leftPointer is less than or equal to rightPointer
+      WHILE the element at leftPointer is less than pivot
+         INCREMENT index of leftPointer by 1
+      END WHILE
+      WHILE the element at rightPointer is greater than pivot
+         DECREMENT index of rightPointer by 1
+      END WHILE
+      IF leftPointer <= rightPointer THEN
+         CALL swap(collection, leftPointer, rightPointer)
+         INCREMENT index of leftPointer by 1
+	 DECREMENT index of rightPointer by 1
+      END IF
+   END WHILE
+   RETURN index of leftPointer   
+END FUNCTION
+
+
+FUNCTION quickSort(collection, left, right)
+   INIT index
+   IF there is more than one element in collection
+      SET left to either 0 or left
+      SET right to either the index number of the last item in collection or right
+      SET index equal to a CALL on partition(collection, left, right)
+      IF left is less than (index - 1) THEN
+         CALL quickSort(collection, left, index - 1)
+      END IF 
+
+      IF index is less than right THEN
+         CALL quickSort(collection, index, right)
+      END IF
+   END IF
+   RETURN collection
+END FUNCTION
+
+> 3. We talked about time complexity in a previous checkpoint, and how to get an idea of the efficiency of an algorithm. After looking at the pseudocode for the above sorting methods, identify why merge sort and quick sort are much more efficient than the others. Walking through each algorithm with a few sample collections may help.
+
+A: 
+Insertion Sort, Bubble Sort and Selection Sort have a time complexity of O(n^2), Merge Sort has a time complexity of O(n log n) and Quick Sort is O(n^2). What makes Quick Sort useful, however, is that Quick Sort's best case is also (n log n), and to get from worst case to best case usually just means adjusting which element we point our pivot to (aka: set the pivot to roughly the middle value of a collection, and avoid setting the pivot to values close to the beginning or end of the collection). Therefore, Merge Sort and Quick Sort give us better runtimes and are more effecient than the other sorting algorithms.  
+
+> 4. All of the sorts addressed in this checkpoint are known as comparison sorts. Research bucket sort and explain how it works. What is the ideal input for bucket sort?
+
+
+A: A bucket sort is almost like a divide-and-conquer method: elements in an array are distributed into a number of "buckets", and each bucket is then sorted individually. The number of buckets used, the algorithms to sort each bucket, and whether the input is uniformly distributed all affect the efficiency of this algorithm. An ideal input for this kind of sorting algorithm is an input that's uniformly distributed over a range. If the input isn't uniformly distributed, it will likely contain keys that are close to eachother, which means those elements will all be put into the same bucket (potentially even just a single bucket). The performance would then be largely determined by the algorithm used to sort each bucket, and this defeats the whole point of a bucket sort.  
